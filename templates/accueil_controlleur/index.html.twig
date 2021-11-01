@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AccueilControlleurController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Bonjour et bienvenu dans notre gestionnaire de bibliotheque ou on peut les mielleurs livres !!! ✅</h1>
+
+    Menu :
+    <ul>
+        <li> <a href="{{ path('livre_index') }}"> Livre</a></li>
+        <li> <a href="{{ path('auteur_index') }}"> Auteur</a></li>
+        <li> <a href="{{ path('editeur_index') }}"> Editeur</a></li>
+        <li> <a href="{{ path('categorie_index') }}"> Catigorie</a></li>
+
+
+    </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livre index{% endblock %}
+
+{% block body %}
+    <h1>Livre index</h1>
+
+    <table class="table" border="1">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>NbPages</th>
+                <th>DateEdition</th>
+                <th>NbExemplaires</th>
+                <th>Auteur</th>
+                <th>Prix</th>
+                <th>Isbn</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for livre in livres %}
+            <tr>
+                <td>{{ livre.id }}</td>
+                <td>{{ livre.titre }}</td>
+                <td>{{ livre.nbPages }}</td>
+                <td>{{ livre.dateEdition ? livre.dateEdition|date('Y-m-d') : '' }}</td>
+                <td>{{ livre.nbExemplaires }}</td>
+                <td>
+                    ({{ livre.auteurs|length }}) &nbsp;
+                    {%  for auteur in livre.auteurs %}
+                        {{ auteur.prenom }} {{ auteur.nom }}
+                    {% endfor %}
+                </td>
+                <td>{{ livre.prix }}</td>
+                <td>{{ livre.isbn }}</td>
+                <td>
+                    <a href="{{ path('livre_show', {'id': livre.id}) }}">show</a>
+                    <a href="{{ path('livre_edit', {'id': livre.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('livre_new') }}">Create new</a><br>
+    <a href="{{ path('Livre_recherche')}}">Prix supperieur 250</a><br>
+    <a href="{{ path('Prix&Page')}}">findByPrixPages</a><br>
+    <a href="{{ path('Prix&Page1')}}">les 5 </a><br>
+    <a href="{{ path('PrixTrier') }}">les livres tries</a><br>
+    <a href="{{ path('PrixPage10') }}">les 10 livres tries</a><br>
+    <a href="{{ path('PrixPageTrier') }}">les livres tries 2 </a>
+
+
+
+{% endblock %}
