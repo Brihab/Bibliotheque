@@ -1,0 +1,74 @@
+<!-- Header Section Begin -->
+<header class="header">
+    <div class="header__top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="header__top__left">
+                        <ul>
+                            <li><i class="fa fa-envelope"></i> hello@RihabBook.com</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="header__top__right">
+                        <div class="header__top__right__social">
+                            <a href="http://www.facebook.com"><i class="fa fa-facebook"></i></a>
+                            <a href="http://www.instagram.com"><i class="fa fa-instagram"></i></a>
+                        </div>
+                        <div class="header__top__right__language">
+                            <img src="{{ asset('img/language.png') }}" alt="">
+                            <div>English</div>
+                            <span class="arrow_carrot-down"></span>
+                            <ul>
+                                <li><a href="#">Français</a></li>
+                                <li><a href="#">English</a></li>
+                            </ul>
+                        </div>
+                            <div class="header__top__right__auth">
+                                <span class="arrow_carrot-down"></span>
+                                <ul>
+
+                                    <li>{% if app.user %}
+                                        <div class="mb-3">
+                                            Bonjour  {{ app.user.username }}
+                                        </div>
+                                        {% endif %}<a href={{ path('app_login') }}><i class="fa fa-user"></i> Login</a></li>
+                                    <li><a href="{{ path('app_logout') }}">Logout</a></li>
+                                </ul>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="header__logo">
+                    <img src="{{ asset('img/logo.png') }}" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <nav class="header__menu">
+                    <ul>
+                        <li class="active"><a href="{{ path('accueil') }}">Home</a></li>
+                        <li><a href="#">Pages</a>
+                            <ul class="header__menu__dropdown">
+                                <li><a href="{{ path('livre_index') }}">Livre Details</a></li>
+                                <li><a href="{{ path('editeur_index') }}">Editeur Details</a></li>
+                                <li><a href="{{ path('auteur_index') }}">Auteur Details</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{{ path('contact') }}">Contact</a></li>
+                        <li><a href="{{ path('emprint') }}">Emprint</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+</header>
+<!-- Header Section End -->

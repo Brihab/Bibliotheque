@@ -42,12 +42,13 @@ class LivreController extends AbstractController
             'form' => $form,
         ]);
     }
+
     /**
-     * @Route("/prix",name="Livre_recherche")
+     * @Route("/allLivers",name="Livre_recherche")
      */
     public function exercise2(){
         $repLiv = $this->getDoctrine()->getRepository(Livre::class);
-        $livres =$repLiv->findByPrixSup(250);
+        $livres =$repLiv->findAll();
 
         return $this->render('livre/index.html.twig',
             ['livres' => $livres]);
@@ -109,6 +110,66 @@ class LivreController extends AbstractController
             ['livres' => $livres]);
     }
 
+    /**
+     * @route("/dqlAll1" , name="dqlAll1")
+     */
+
+    public function DQlALL(){
+        $repLiv = $this->getDoctrine()->getRepository(Livre::class);
+        $livres =$repLiv->DQlALL();
+
+        return $this->render('livre/index.html.twig',
+            ['livres' => $livres]);
+    }
+
+
+    /**
+     * @route("/dqlPrixPageTrier" , name="dqlPrixPageTrier")
+     */
+
+    public function DQlfindByPrixSup(){
+        $repLiv = $this->getDoctrine()->getRepository(Livre::class);
+        $livres =$repLiv->DQlfindByPrixSup(10);
+
+        return $this->render('livre/index.html.twig',
+            ['livres' => $livres]);
+    }
+
+    /**
+     * @route("/dql1" , name="dql1")
+     */
+
+    public function DqlfindByPrixPages(){
+        $repLiv = $this->getDoctrine()->getRepository(Livre::class);
+        $livres =$repLiv->DqlfindByPrixPages(10, 2000);
+
+        return $this->render('livre/index.html.twig',
+            ['livres' => $livres]);
+    }
+
+    /**
+     * @route("/dql2" , name="dql2")
+     */
+
+    public function DqlfindByPrixPagesTrie(){
+        $repLiv = $this->getDoctrine()->getRepository(Livre::class);
+        $livres =$repLiv->DqlfindByPrixPagesTrie(10, 2000);
+
+        return $this->render('livre/index.html.twig',
+            ['livres' => $livres]);
+    }
+
+    /**
+     * @route("/dql3" , name="dql3")
+     */
+
+    public function DqlfindByPrixPages10(){
+        $repLiv = $this->getDoctrine()->getRepository(Livre::class);
+        $livres =$repLiv->DqlfindByPrixPages10(10, 2000);
+
+        return $this->render('livre/index.html.twig',
+            ['livres' => $livres]);
+    }
 
     #[Route('/{id}', name: 'livre_show', methods: ['GET'])]
     public function show(Livre $livre): Response

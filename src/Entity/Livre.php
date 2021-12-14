@@ -65,9 +65,15 @@ class Livre
      */
     private $auteurs;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Emprint::class, mappedBy="livre")
+     */
+    private $emprints;
+
     public function __construct()
     {
         $this->auteurs = new ArrayCollection();
+        $this->emprints = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -199,6 +205,36 @@ class Livre
     {
         return $this->titre;
 
+    }
+
+    /**
+     * @return Collection|Emprint[]
+     */
+    public function getEmprints(): Collection
+    {
+        return $this->emprints;
+    }
+
+    public function addEmprint(Emprint $emprint): self
+    {
+        if (!$this->emprints->contains($emprint)) {
+            $this->emprints[] = $emprint;
+            $emprint->setLivre($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEmprint(Emprint $emprint): self
+    {
+        if ($this->emprints->removeElement($emprint)) {
+            // set the owning side to null (unless already changed)
+            if ($emprint->getLivre() === $this) {
+                $emprint->setLivre(null);
+            }
+        }
+
+        return $this;
     }
 
 }

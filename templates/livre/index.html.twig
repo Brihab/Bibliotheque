@@ -3,9 +3,12 @@
 {% block title %}Livre index{% endblock %}
 
 {% block body %}
-    <h1>Livre index</h1>
-
-    <table class="table" border="1">
+    <h1>Livre </h1>
+    <div>
+        <a href="{{ path('livre_new') }}"> <span class="btn site-btn"><i class="fa fa-plus">Create new</i> </span></a>
+    </div>
+    <br>
+    <table class="table table-striped table-bordered table-hover">
         <thead>
             <tr>
                 <th>Id</th>
@@ -36,8 +39,11 @@
                 <td>{{ livre.prix }}</td>
                 <td>{{ livre.isbn }}</td>
                 <td>
-                    <a href="{{ path('livre_show', {'id': livre.id}) }}">show</a>
-                    <a href="{{ path('livre_edit', {'id': livre.id}) }}">edit</a>
+                    <a href="{{ path('livre_show', {'id': livre.id}) }}"><span class="btn btn-default"><i class="fa fa-eye"></i> </span></a>
+                    <a href="{{ path('livre_edit', {'id': livre.id}) }}"><span class="btn btn-success"><i class="fa fa-pencil"></i></span></a>
+                    {{ include('livre/_delete_form.html.twig') }}
+
+
                 </td>
             </tr>
         {% else %}
@@ -48,14 +54,20 @@
         </tbody>
     </table>
 
-    <a href="{{ path('livre_new') }}">Create new</a><br>
-    <a href="{{ path('Livre_recherche')}}">Prix supperieur 250</a><br>
+    {#<a href="{{ path('Livre_recherche')}}">Prix supperieur 250</a><br>
     <a href="{{ path('Prix&Page')}}">findByPrixPages</a><br>
     <a href="{{ path('Prix&Page1')}}">les 5 </a><br>
     <a href="{{ path('PrixTrier') }}">les livres tries</a><br>
     <a href="{{ path('PrixPage10') }}">les 10 livres tries</a><br>
-    <a href="{{ path('PrixPageTrier') }}">les livres tries 2 </a>
+    <a href="{{ path('PrixPageTrier') }}">les livres tries 2 </a><br>
+    <h2> DQL </h2><br>
+    <a href="{{ path('dqlAll1') }}">allLiver </a><br>
+    <a href="{{ path('dqlPrixPageTrier') }}">les livres tries 2 </a><br>
+    <a href="{{ path('dql1') }}">les livres prix sup nbpage inf </a><br>
+    <a href="{{ path('dql2') }}">les livres prix sup nbpage inf Triee </a><br>
+    <a href="{{ path('dql3') }}">les 10 livres prix sup nbpage inf </a><br>
 
+#}
 
 
 {% endblock %}

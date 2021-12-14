@@ -2,18 +2,166 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <meta name="description" content="Ogani Template">
+        <meta name="keywords" content="Ogani, unica, creative, html">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>{% block title %} Gestion bibliotheque!{% endblock %}</title>
+
+        <!-- Google Font -->
+        <!--<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">-->
+
+        <!-- Css Styles -->
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" type="text/css">
+        <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}" type="text/css">
+        <link rel="stylesheet" href="{{ asset('css/elegant-icons.css') }}"type="text/css">
+        <link rel="stylesheet" href="{{ asset('css/nice-select.css') }}" type="text/css">
+        <link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}" type="text/css">
+        <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}" type="text/css">
+        <link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}" type="text/css">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}" type ="text/css">
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
-        {% endblock %}
-
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-        {% endblock %}
+        {% block stylesheet %}{% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Humberger Begin -->
+    <div class="humberger__menu__overlay"></div>
+    <div class="humberger__menu__wrapper">
+        <div class="humberger__menu__logo">
+            <a href="#"><img src="{{ asset('img/logo.png') }}" alt=""></a>
+        </div>
+        <div class="humberger__menu__cart">
+            <ul>
+                <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
+                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+            </ul>
+            <div class="header__cart__price">item: <span>$150.00</span></div>
+        </div>
+        <div class="humberger__menu__widget">
+            <div class="header__top__right__language">
+                <img src="{{ asset('img/language.png') }}" alt="">
+                <div>English</div>
+                <span class="arrow_carrot-down"></span>
+                <ul>
+                    <li><a href="#">Français</a></li>
+                    <li><a href="#">English</a></li>
+                </ul>
+            </div>
+            <div class="header__top__right__auth">
+                <a href="#"><i class="fa fa-user"></i> Login</a>
+            </div>
+        </div>
+        {% include('menu.html.twig') %}
+        <div id="mobile-menu-wrap"></div>
+        <div class="header__top__right__social">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+        </div>
+        <div class="humberger__menu__contact">
+            <ul>
+                <li><i class="fa fa-envelope"></i> hello@RihabBook.com</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Humberger End -->
+{% include ('top.html.twig') %}
+
+
+    <!-- Hero Section Begin -->
+    <section class="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="hero__categories">
+                        <div class="hero__categories__all">
+                            <i class="fa fa-bars"></i>
+                            <span>Gestion de bibliotheque</span>
+                        </div>
+
+                        <ul>
+                            <li> <a href="{{ path('livre_index') }}"><i class="fa fa-book"></i> Livre</a></li>
+                            <li> <a href="{{ path('auteur_index') }}"><i class="fa fa-user"></i> Auteur</a></li>
+                            <li> <a href="{{ path('editeur_index') }}"><i class="fa fa-pencil"></i> Editeur</a></li>
+                            <li> <a href="{{ path('categorie_index') }}"><i class="fa fa-folder"></i> Catigorie</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="col-lg-9">
+                    <div class="hero__search">
+                        <div class="hero__search__form">
+                            <form>
+                                <div class="hero__search__categories">
+                                    <a href="{{ path('Livre_recherche')}}">
+                                    All Categories
+                                    </a>
+                                    <span class="arrow_carrot-down"></span>
+                                </div>
+                                <a href="{{ path('recherche')}}">recherche avancée</a>
+                            </form>
+                        </div>
+                        <div class="hero__search__phone">
+                            <div class="hero__search__phone__icon">
+                                <i class="fa fa-phone"></i>
+                            </div>
+                            <div class="hero__search__phone__text">
+                                <h5>258964786</h5>
+                                <span>support 24/7 time</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero__item set-bg" data-setbg="{{ asset('img/images.jpeg') }}">
+                        <div class="hero__text">
+                            <h2>Welcome <br /> IN aur Book Store </h2>
+                            <p>Free Pickup and Delivery Available</p>
+                            <a href="#" class="primary-btn">SHOP NOW</a>
+                        </div>
+                    </div>
+                    <div>
+                        <div >
+                            <div class="row">
+                                <div class="col-md-12">
+                                        <div class="panel-body">
+                                            {% block body %}{% endblock %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Hero Section End -->
+
+    {% include ('piedPage.html.twig')%}
+
+
+
+    <!-- Js Plugins -->
+    <script src="{{ asset ('js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('js/jquery.nice-select.min.js')}}"></script>
+    <script src="{{ asset('js/jquery-ui.min.js')}}"></script>
+    <script src="{{ asset('js/jquery.slicknav.js')}}"></script>
+    <script src="{{ asset('js/mixitup.min.js')}}"></script>
+    <script src="{{ asset('js/owl.carousel.min.js')}}"></script>
+    <script src="{{ asset('js/main.js')}}"></script>
+    {% block javascript %}{% endblock %}
     </body>
 </html>
+
+

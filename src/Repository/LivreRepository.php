@@ -90,7 +90,67 @@ class LivreRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function DQlALL():array{
+        $em = $this->getEntityManager();
+        $requete = $em->createQuery(
+            'SELECT l FROM App\Entity\Livre l '
+        )->setMaxResults(10);
+        return $requete->getResult();
+    }
+    public function DQlfindByPrixSup($prix):array{
+        $em = $this->getEntityManager();
+        $requete = $em->createQuery(
+            'SELECT l FROM App\Entity\Livre l 
+            WHERE l.prix > :s
+            ORDER BY l.prix ASC'
+        )->setParameter('s',$prix);
+        return $requete->getResult();
+    }
 
+    public function DqlfindByPrixPages($prix, $nbpage):array{
+        $em = $this->getEntityManager();
+        $requete = $em->createQuery(
+            'SELECT l FROM App\Entity\Livre l 
+            WHERE l.prix > :s AND l.nbPages < :nb'
+        )->setParameter('s',$prix)
+        ->setParameter('nb', $nbpage);
+        return $requete->getResult();
+    }
+
+    public function DqlfindByPrixPages10($prix, $nbpage):array{
+        $em = $this->getEntityManager();
+        $requete = $em->createQuery(
+            'SELECT l FROM App\Entity\Livre l 
+            WHERE l.prix > :s AND l.nbPages < :nb'
+        )->setParameter('s',$prix)
+            ->setParameter('nb', $nbpage)
+        ->setMaxResults(10);
+        return $requete->getResult();
+    }
+
+    public function DqlfindByPrixPagesTrie($prix, $nbpage):array{
+        $em = $this->getEntityManager();
+        $requete = $em->createQuery(
+            'SELECT l FROM App\Entity\Livre l 
+            WHERE l.prix > :s AND l.nbPages < :nb
+            ORDER BY l.prix DESC'
+        )->setParameter('s',$prix)
+            ->setParameter('nb', $nbpage)
+            ->setMaxResults(10);
+        return $requete->getResult();
+    }
+
+    public function DqlfindByPrixPages10Trie($prix, $nbpage):array{
+        $em = $this->getEntityManager();
+        $requete = $em->createQuery(
+            'SELECT l FROM App\Entity\Livre l 
+            WHERE l.prix > :s AND l.nbPages < :nb
+            ORDER BY l.prix DESC'
+        )->setParameter('s',$prix)
+            ->setParameter('nb', $nbpage)
+            ->setMaxResults(10);
+        return $requete->getResult();
+    }
 
         /*
         public function findOneBySomeField($value): ?Livre
